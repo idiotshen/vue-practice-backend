@@ -8,7 +8,7 @@ module.exports = function (res, promise) {
     .catch((err) => {
       res.json({
         code: err.code || '504',
-        msg: err.message || ''
+        message: err.message || ''
       })
     })
 }

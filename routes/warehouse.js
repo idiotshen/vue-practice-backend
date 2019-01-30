@@ -15,4 +15,10 @@ router.get('/', (req, res) => {
   responseHandler(res, warehouseController.getWarehouseList(param))
 })
 
+router.get('/:warehouseId/excludedProductList', (req, res) => {
+  let { warehouseId } = req.params
+
+  responseHandler(res, warehouseController.getWarehouseExcludedProductList(warehouseId))
+})
+
 module.exports = router

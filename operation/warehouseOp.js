@@ -1,5 +1,6 @@
 /* eslint-disable prefer-promise-reject-errors */
 const warehouseDao = require('../dao/warehouseDao')
+const warehouseBookDao = require('../dao/warehouseBookDao')
 
 const warehouseOp = {
   async createWarehouse ({ name, location, totalCover }) {
@@ -20,6 +21,18 @@ const warehouseOp = {
     }
 
     return Promise.resolve(warehouseList)
+  },
+
+  async updateWarehouseListHasUsed (warehouseId, cover) {
+    let warehouse = await warehouseDao.findWarehouseById(warehouseId)
+
+    return warehouseDao.updateWarehouseHasUsed({ warehouseId, hasUsed: warehouse.hasUsed + cover })
+  },
+
+  async getWarehouseRest (warehouseId) {
+    let warehouse = await warehouseDao.findWarehouseById(warehouseId)
+
+    return warehouse.totalCover - warehouse.hasUsed
   }
 }
 

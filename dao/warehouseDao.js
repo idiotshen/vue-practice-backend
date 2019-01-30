@@ -2,9 +2,7 @@ const warehouse = require('../model/warehouse')
 const uuid = require('uuid')
 
 const warehouseDao = {
-  async findWarehouseById ({
-    warehouseId
-  }) {
+  async findWarehouseById (warehouseId) {
     return warehouse.findOne({
       uid: warehouseId
     })
