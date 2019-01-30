@@ -3,9 +3,8 @@ const Schema = mongoose.Schema
 
 // 在库物品记录
 const warehouseBook = mongoose.model('warehouseBook', new Schema({
-  uid: String,
-  warehouseId: String,
-  productId: String,
+  warehouseId: { type: Schema.Types.ObjectId, ref: 'warehouse' },
+  product: { type: Schema.Types.ObjectId, ref: 'product' },
   count: Number,
   cover: Number,
   createDate: { type: Date, default: Date.now }

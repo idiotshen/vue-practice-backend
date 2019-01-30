@@ -16,7 +16,7 @@ const warehouseController = {
     let productIdList = warehouseBookList.map((value) => value.productId)
 
     return productOp.getProductByCondition({
-      uid: {
+      _id: {
         $nin: productIdList
       }
     })

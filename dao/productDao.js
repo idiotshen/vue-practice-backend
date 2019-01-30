@@ -1,16 +1,14 @@
 const product = require('../model/product')
-const uuid = require('uuid')
 
 const productDao = {
   async findProductById (productId) {
     return product.findOne({
-      uid: productId
+      _id: productId
     })
   },
 
   async createProduct ({ name, singleCover }) {
     return product.create({
-      uid: uuid.v4(),
       name,
       singleCover
     })

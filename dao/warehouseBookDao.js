@@ -1,11 +1,12 @@
 const warehouseBook = require('../model/warehouseBook')
-const uuid = require('uuid')
 
 const warehouseBookDao = {
   getWarehouseBookByWarehouseId (warehouseId) {
     return warehouseBook.find({
       warehouseId
-    }).exec()
+    })
+      .populate('product')
+      .exec()
   },
 
   getWarehouseBookByProductId (productId) {
@@ -16,7 +17,6 @@ const warehouseBookDao = {
 
   createWarehouseBook ({ warehouseId, productId, count, cover }) {
     return warehouseBook.create({
-      uid: uuid.v4(),
       warehouseId,
       productId,
       count,

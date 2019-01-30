@@ -11,4 +11,10 @@ router.post('/', (req, res) => {
   responseHandler(res, warehouseBookController.createWarehouseBook(param))
 })
 
+router.get('/warehouse/:warehouseId', (req, res) => {
+  let { warehouseId } = req.params
+
+  responseHandler(res, warehouseBookController.getWarehouseBookByWarehouseId(warehouseId))
+})
+
 module.exports = router

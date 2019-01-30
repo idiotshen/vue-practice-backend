@@ -29,6 +29,12 @@ const warehouseBookController = {
         session.startTransaction()
         return Promise.all(promiseArr)
       })
+  },
+
+  async getWarehouseBookByWarehouseId (warehouseId) {
+    let warehouseBookList = await warehouseBookOp.getWarehouseBookByWarehouseId(warehouseId)
+
+    return warehouseBookList
   }
 
 }

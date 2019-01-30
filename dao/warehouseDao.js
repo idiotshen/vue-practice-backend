@@ -1,10 +1,9 @@
 const warehouse = require('../model/warehouse')
-const uuid = require('uuid')
 
 const warehouseDao = {
   async findWarehouseById (warehouseId) {
     return warehouse.findOne({
-      uid: warehouseId
+      _id: warehouseId
     })
   },
 
@@ -13,7 +12,7 @@ const warehouseDao = {
     hasUsed
   }) {
     return warehouse.updateOne({
-      uid: warehouseId
+      _id: warehouseId
     }, {
       hasUsed
     })
@@ -24,7 +23,7 @@ const warehouseDao = {
     totalCover
   }) {
     return warehouse.updateOne({
-      uid: warehouseId
+      _id: warehouseId
     }, {
       totalCover
     })
@@ -32,7 +31,6 @@ const warehouseDao = {
 
   async createWarehouse ({ name, location, totalCover }) {
     return warehouse.create({
-      uid: uuid.v4(),
       name,
       location,
       totalCover
