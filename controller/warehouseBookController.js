@@ -35,6 +35,46 @@ const warehouseBookController = {
     let warehouseBookList = await warehouseBookOp.getWarehouseBookByWarehouseId(warehouseId)
 
     return warehouseBookList
+  },
+
+  /**
+   *
+   *
+   * @param {Array} updateWarehouseBookList
+   * @returns
+   */
+  async updateWarehouseBookList (updateWarehouseBookList) {
+    let changeCover = 0
+    let nowWarehouseBookObj = {}
+    let warehouseId = updateWarehouseBookList[0].warehouseId
+    let warehouseRest = await warehouseOp.getWarehouseRest(warehouseId)
+    let nowWarehouseBookList = await warehouseBookOp.getWarehouseBookByWarehouseId(updateWarehouseBookList[0].warehouseId)
+
+    nowWarehouseBookList.forEach(warehouseBook => {
+      nowWarehouseBookObj[warehouseBook.product.id] = warehouseBook
+    })
+
+    updateWarehouseBookList.forEach(warehouseBook => {
+      let nowWarehouseBook = nowWarehouseBookObj[warehouseBook.productId]
+      if (!nowWarehouseBook) {
+        return Promise.reject({ code: 500, message: '产品不在现有库存中' })
+      }
+
+      if (warehouseBook.warehouseId !== nowWarehouseBook.warehouseId.toString()) {
+        return Promise.reject({ code: 500, message: '不能同时更新不同仓库库存' })
+      }
+
+      changeCover += (warehouseBook.count - nowWarehouseBook.count) * nowWarehouseBook.product.singleCover
+    })
+
+    if (changeCover > warehouseRest) {
+      return Promise.reject({ code: 500, message: '超出仓库剩余容量' })
+    }
+
+    return Promise.all([
+      warehouseBookOp.updateWarehouseBookList(updateWarehouseBookList),
+      warehouseOp.updateWarehouseListHasUsed(warehouseId, changeCover)
+    ])
   }
 
 }

@@ -13,7 +13,7 @@ const warehouseController = {
 
   async getWarehouseExcludedProductList (warehouseId) {
     let warehouseBookList = await warehouseBookOp.getWarehouseBookByWarehouseId(warehouseId)
-    let productIdList = warehouseBookList.map((value) => value.productId)
+    let productIdList = warehouseBookList.map((value) => value.product.id)
 
     return productOp.getProductByCondition({
       _id: {

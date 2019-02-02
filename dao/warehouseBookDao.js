@@ -18,7 +18,17 @@ const warehouseBookDao = {
   createWarehouseBook ({ warehouseId, productId, count, cover }) {
     return warehouseBook.create({
       warehouseId,
-      productId,
+      product: productId,
+      count,
+      cover
+    })
+  },
+
+  updateWarehouseBookCount ({ count, cover }, { warehouseId, productId }) {
+    return warehouseBook.updateOne({
+      warehouseId,
+      product: productId
+    }, {
       count,
       cover
     })

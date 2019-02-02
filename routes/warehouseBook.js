@@ -17,4 +17,10 @@ router.get('/warehouse/:warehouseId', (req, res) => {
   responseHandler(res, warehouseBookController.getWarehouseBookByWarehouseId(warehouseId))
 })
 
+router.put('/', (req, res) => {
+  let { updateWarehouseBookList } = req.body
+
+  responseHandler(res, warehouseBookController.updateWarehouseBookList(updateWarehouseBookList))
+})
+
 module.exports = router

@@ -7,6 +7,23 @@ const warehouseBookOp = {
 
   async getWarehouseBookByWarehouseId (warehouseId) {
     return warehouseBookDao.getWarehouseBookByWarehouseId(warehouseId)
+  },
+
+  async updateWarehouseBookList (updateWarehouseBookList) {
+    let promiseArr = []
+
+    updateWarehouseBookList.forEach(element => {
+      promiseArr.push(warehouseBookDao.updateWarehouseBookCount(
+        {
+          count: element.count,
+          cover: element.cover
+        }, {
+          warehouseId: element.warehouseId,
+          productId: element.productId
+        }))
+    })
+
+    return Promise.all(promiseArr)
   }
 }
 

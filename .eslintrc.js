@@ -1,6 +1,6 @@
 module.exports = {
     "extends": "standard",
     rules: {
-        allowEmptyReject: true
+        'prefer-promise-reject-errors': 0
     }
 };
