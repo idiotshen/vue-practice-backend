@@ -1,0 +1,6 @@
+{
+  "secret": "idiot_shen",
+  "db_uri": "mongodb://localhost/warehouseSystem",
+  "user": "",
+  "pwd": ""
+}
