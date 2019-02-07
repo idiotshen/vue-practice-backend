@@ -10,6 +10,10 @@ module.exports = function (params) {
   console.log(process.env.NODE_ENV)
   mongoose.connect(config.get('db_uri'), {
     user: config.get('user'),
-    pass: config.get('pwd')
+    pass: config.get('pwd'),
+    server: {
+      auto_reconnect: true,
+      poolSize: 10
+    }
   })
 }
