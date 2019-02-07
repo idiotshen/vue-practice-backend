@@ -1,6 +1,5 @@
 /* eslint-disable prefer-promise-reject-errors */
 const warehouseDao = require('../dao/warehouseDao')
-const warehouseBookDao = require('../dao/warehouseBookDao')
 
 const warehouseOp = {
   async createWarehouse ({ name, location, totalCover }) {

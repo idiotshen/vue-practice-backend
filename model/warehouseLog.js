@@ -3,8 +3,9 @@ const Schema = mongoose.Schema
 
 // 仓库操作记录
 const warehouseLog = mongoose.model('warehouseLog', new Schema({
-  warehouseId: String,
-  productId: String,
+  warehouseId: { type: Schema.Types.ObjectId, ref: 'warehouse' },
+  product: { type: Schema.Types.ObjectId, ref: 'product' },
+  changeCount: Number,
   count: Number, // 变动数量
   createDate: { type: Date, default: Date.now }
 }))

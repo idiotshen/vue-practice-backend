@@ -7,10 +7,10 @@ const loginOp = {
     let user = await userDao.findUser({ username, password })
 
     if (!user) {
-      return Promise.reject({ code: 200, message: '用户名或密码错误' })
+      return Promise.reject({ code: 500, message: '用户名或密码错误' })
     }
 
-    return jwtUtil.encrypt({ uid: user.uid, name: user.name })
+    return jwtUtil.encrypt({ _id: user._id, username: user.username })
   }
 }
 

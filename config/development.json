@@ -1,6 +1,10 @@
 {
   "secret": "idiot_shen",
+  "hash": "as&HI+hjhi*&1=34_asf",
   "db_uri": "mongodb://localhost/warehouseSystem",
+  "redis_host": "127.0.0.1",
+  "redis_port": "6379",
+  "redis_expire_time": "1800",
   "user": "",
   "pwd": ""
 }

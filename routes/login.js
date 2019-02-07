@@ -5,8 +5,8 @@ const responseHandler = require('../utils/responseHandler')
 
 router.post('/', (req, res) => {
   let param = req.body
-
-  responseHandler(res, loginController.auth(param))
+  let ip = req.ip
+  responseHandler(res, loginController.auth(param, ip))
 })
 
 module.exports = router
