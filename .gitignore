@@ -16,3 +16,4 @@ config/production.json
 *.ntvs*
 *.njsproj
 *.sln
+config/production.js
